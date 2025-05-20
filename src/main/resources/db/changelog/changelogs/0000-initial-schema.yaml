@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: julien
+      changes:
+        - createTable:
+            tableName: parc
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nom
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: julien
+      changes:
+        - createTable:
+            tableName: offre
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: marche
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: julien
+      changes:
+        - createTable:
+            tableName: bloc_horaire
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: offre_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: heure_debut
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: heure_fin
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: puissance_mw
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: prix_plancher
+                  type: double
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: bloc_horaire
+            baseColumnNames: offre_id
+            referencedTableName: offre
+            referencedColumnNames: id
+            constraintName: fk_bloc_offre
