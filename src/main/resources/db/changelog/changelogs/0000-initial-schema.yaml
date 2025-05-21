@@ -22,7 +22,10 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
-
+        - createSequence:
+            sequenceName: PARC_SEQ
+            startValue: 1
+            incrementBy: 1
   - changeSet:
       id: 2
       author: julien
@@ -41,6 +44,10 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+        - createSequence:
+            sequenceName: OFFRE_SEQ
+            startValue: 1
+            incrementBy: 1
 
   - changeSet:
       id: 3
@@ -80,6 +87,10 @@ databaseChangeLog:
                   type: double
                   constraints:
                     nullable: false
+        - createSequence:
+            sequenceName: BLOC_HORAIRE_SEQ
+            startValue: 1
+            incrementBy: 1
         - addForeignKeyConstraint:
             baseTableName: bloc_horaire
             baseColumnNames: offre_id
